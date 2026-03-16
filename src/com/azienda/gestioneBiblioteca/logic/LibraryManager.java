@@ -51,10 +51,11 @@ public class LibraryManager {
 	}
 
 	/**
-	 * Gestisce la procedura di prestito di un oggetto. - Verifica se esiste -
-	 * Controlla se è un oggetto prestabile (implementa InterfacciaBorrowable) -
-	 * Tenta il prestito (che può lanciare AlreadyBorrowedException) - Registra il
-	 * prestito nella mappa borrowedByUser
+	 * Gestisce la procedura di prestito di un oggetto. 
+	 * - Verifica se esiste 
+	 * - Controlla se è un oggetto prestabile (implementa InterfacciaBorrowable)
+	 * - Tenta il prestito (che può lanciare AlreadyBorrowedException) 
+	 * - Registra il prestito nella mappa borrowedByUser
 	 * 
 	 * @throws LimitExceededException
 	 */
@@ -86,9 +87,11 @@ public class LibraryManager {
 	}
 
 	/**
-	 * Gestisce la restituzione di un oggetto. - Verifica che esista - Verifica che
-	 * sia effettivamente un oggetto prestabile - Rimuove l'oggetto da tutte le
-	 * liste utente in cui può trovarsi - Segna l’oggetto come “non in prestito”
+	 * Gestisce la restituzione di un oggetto. 
+	 * - Verifica che esista 
+	 * - Verifica che sia effettivamente un oggetto prestabile 
+	 * - Rimuove l'oggetto da tutte le liste utente in cui può trovarsi 
+	 * - Segna l’oggetto come “non in prestito”
 	 */
 	public void returnItem(String itemId) throws ItemNotFoundException {
 		// Recupero dell'oggetto dal catalogo
@@ -98,7 +101,7 @@ public class LibraryManager {
 		if (!(item instanceof InterfacciaBorrowable)) {
 			throw new IllegalArgumentException("Questo oggetto non è di tipo prestabile.");
 		}
-
+		// cast
 		InterfacciaBorrowable bItem = (InterfacciaBorrowable) item;
 
 		// Provo a rimuoverlo dalle liste degli utenti
@@ -121,9 +124,14 @@ public class LibraryManager {
 
 	public void listAllItem() {
 		System.out.println("=== CATALOGO BIBLIOTECA ===");
-		for (AbstractItem abstractItem : items) {
-			System.out.println(abstractItem.toString());
+		if (!items.isEmpty()) {
+			for (AbstractItem abstractItem : items) {
+				System.out.println(abstractItem.toString());
+			}
+		} else {
+			System.out.println("Catalogo attualmente vuoto!");
 		}
+
 	}
 
 	public void listBorrowedItem() {
@@ -138,7 +146,7 @@ public class LibraryManager {
 		for (String userId : borrowedByUser.keySet()) {
 			ArrayList<InterfacciaBorrowable> listObjects = borrowedByUser.get(userId);
 
-			// se l'utente ha degli oggetti in prestito, stampiamoli
+			// se l'utente ha degli oggetti in prestito, li stampo
 			if (!listObjects.isEmpty()) {
 				System.out.println("Utente ID: " + userId);
 				for (InterfacciaBorrowable bItem : listObjects) {

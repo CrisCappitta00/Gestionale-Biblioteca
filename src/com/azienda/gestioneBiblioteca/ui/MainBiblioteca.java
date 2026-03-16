@@ -61,6 +61,7 @@ public class MainBiblioteca {
 		System.out.println("3. Restituisci un oggetto");
 		System.out.println("4. Visualizza oggetti presi in prestito dall'utente");
 		System.out.println("5. Esci");
+		System.out.println("6. Visualizza il catalogo della biblioteca");
 		System.out.print("Scelta: ");
 	}
 
@@ -87,7 +88,7 @@ public class MainBiblioteca {
 
 		} catch (Exception e) {
 			// Qui catturo le eccezione AlreadyBorrowed e itemNotFound
-			System.out.println("ERRORE: " + e.getMessage());
+			System.out.println("ERRORE: " + e.getMessage() + " - " + e.getCause());
 		}
 	}
 
@@ -100,7 +101,7 @@ public class MainBiblioteca {
 
 		} catch (Exception e) {
 			// Qui catturo le eccezione AlreadyBorrowed e itemNotFound
-			System.out.println("ERRORE durante la restituzione: " + e.getMessage());
+			System.out.println("ERRORE durante la restituzione: " + e.getMessage() + " - " + e.getCause());
 		}
 	}
 
