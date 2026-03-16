@@ -1,0 +1,11 @@
+# Cartella dei file compilati (il bytecode .class non va mai su Git)
+bin/
+
+# File di configurazione di Eclipse (specifici per il tuo PC)
+.settings/
+.classpath
+.project
+
+# File temporanei e log
+*.log
+.metadata/
